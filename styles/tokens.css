@@ -1,0 +1,72 @@
+/* Design tokens. Each one is a Tailwind theme variable, so it's also a utility: text-purple, rounded-media, py-section. */
+@theme {
+  /* Corners: media for images, frames and cards; control for buttons and pills */
+  --radius-media: 1rem;
+  --radius-control: 9999px;
+  --radius-field: 0.5rem; /* form fields, code blocks, the skip link */
+
+  --color-white: #fffafa;
+  --color-black: var(--color-gray-950);
+  --color-darkBlue: var(--color-gray-900);
+  /* A touch lighter than purple-500 (#ad46ff, 4.3:1) so purple text passes 4.5:1 on darkBlue: #b45bff, 5.0:1 */
+  --color-purple: oklch(66% 0.245 304);
+  --color-green: var(--color-teal-300);
+  --color-orange: var(--color-red-400);
+  --color-lightGrey: var(--color-gray-300);
+  --color-grey: var(--color-gray-400);
+  --color-darkGrey: var(--color-gray-700);
+
+  --font-header: var(--font-poppins);
+  --font-body: var(--font-monaspace);
+
+  --breakpoint-2xl: 1440px;
+  --breakpoint-3xl: 1600px;
+  --breakpoint-4xl: 1920px;
+
+  --nav-height: clamp(6rem, 20vw, 8rem);
+
+  /* Offsets from the fixed nav: pt-page-top clears it at the top of a page, top-sticky is where sticky columns stop */
+  --spacing-page-top: calc(4rem + var(--nav-height));
+  --spacing-sticky: calc(var(--nav-height) + 1rem);
+
+  /* Vertical rhythm, fluid like the type scale (360px to 1440px viewports).
+     py-section: above and below every section, so two sections sit 112px to 160px apart.
+     mb-header: from a page header to the content under it. */
+  --spacing-section: clamp(3.5rem, 3rem + 2.222vw, 5rem); /* 56px → 80px */
+  --spacing-header: clamp(4rem, 3.333rem + 2.963vw, 6rem); /* 64px → 96px */
+
+  /* Every page uses the nav's container, so content starts under the logo. Inside it:
+     max-w-narrow (intros), max-w-copy (centered copy and forms), max-w-prose-column (case study body) */
+  --container-narrow: 36rem;
+  --container-copy: 42rem;
+  --container-prose-column: 45rem;
+
+  /* Type scale: every size is fluid, scaling linearly from a 360px to a 1440px
+     viewport and holding steady outside that band. Element rules in base.css apply
+     these, so markup shouldn't need size utilities for headings or body copy. */
+  --text-h1: clamp(2.25rem, 1.75rem + 2.222vw, 3.75rem); /* 36px → 60px */
+  --text-h1--line-height: 1.15;
+  --text-h2: clamp(1.875rem, 1.5rem + 1.667vw, 3rem); /* 30px → 48px */
+  --text-h2--line-height: 1.25;
+  --text-h3: clamp(1.5rem, 1.25rem + 1.111vw, 2.25rem); /* 24px → 36px */
+  --text-h3--line-height: 1.3;
+  --text-h4: clamp(1.375rem, 1.208rem + 0.741vw, 1.875rem); /* 22px → 30px */
+  --text-h4--line-height: 1.35;
+  --text-h5: clamp(1.25rem, 1.167rem + 0.37vw, 1.5rem); /* 20px → 24px */
+  --text-h5--line-height: 1.4;
+  --text-body: clamp(1.0625rem, 1rem + 0.278vw, 1.25rem); /* 17px → 20px */
+  --text-body--line-height: 1.6;
+  --text-prose: clamp(1rem, 0.958rem + 0.185vw, 1.125rem); /* 16px → 18px, long-form case study copy */
+  --text-prose--line-height: 1.7;
+  --text-label: clamp(0.9375rem, 0.917rem + 0.093vw, 1rem); /* 15px → 16px, nav, pills, captions */
+  --text-label--line-height: 1.5;
+  --text-quote: 3.5rem; /* the decorative quote mark on testimonials */
+  --text-quote--line-height: 1;
+
+  /* Motion: --transition for hovers and small state changes, --duration-reveal for entrances (hero-in, lsa) */
+  --transition: 200ms;
+  --duration-reveal: 700ms;
+  --ease-reveal: cubic-bezier(0, 0, 0.2, 1); /* ease-out: fast start, gentle landing */
+  --stagger: 100ms; /* between items revealed together; set --i: 1, 2, 3 on each */
+  --duration-move: 350ms; /* things moving to a new place on screen (view transitions) */
+}

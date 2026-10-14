@@ -1,0 +1,110 @@
+/* Element defaults: the dark page, the type scale on headings and copy, focus rings, and the dashed card */
+@layer base {
+  html {
+    /* Scrollbar */
+    scrollbar-color: var(--color-white) var(--color-darkBlue);
+    scrollbar-width: thin;
+
+    @apply font-body scroll-pt-15 scroll-smooth;
+  }
+
+  body {
+    /* Body size is set once here and inherited: p, a, button and form fields
+       (Tailwind's preflight sets them to font: inherit) all follow it, and a link
+       inside a heading takes the heading's size. */
+    @apply text-body text-white bg-darkBlue;
+  }
+
+  section {
+    @apply py-section;
+  }
+
+  nav,
+  header,
+  main,
+  footer {
+    @apply container md:max-w-screen-3xl mx-auto px-4 md:px-8;
+  }
+
+  img,
+  svg,
+  video {
+    @apply block w-full h-auto object-cover;
+  }
+
+  svg:not(svg[data-icon='title']) {
+    @apply w-6 stroke-1;
+  }
+
+  /* Typography */
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6,
+  .h1,
+  .h2,
+  .h3,
+  .h4,
+  .h5 {
+    @apply font-header text-balance;
+  }
+
+  h1,
+  .h1 {
+    @apply text-h1;
+  }
+
+  h2,
+  .h2 {
+    @apply text-h2;
+  }
+
+  h3,
+  .h3 {
+    @apply text-h3;
+  }
+
+  h4,
+  .h4 {
+    @apply text-h4;
+  }
+
+  h5,
+  .h5 {
+    @apply text-h5;
+  }
+
+  h6 {
+    @apply text-body;
+  }
+
+  p {
+    @apply text-pretty;
+  }
+
+  a {
+    @apply hover:text-purple transition-colors duration-(--transition) ease-in-out;
+  }
+
+  :focus-visible {
+    @apply outline-2 outline-offset-4 outline-purple rounded-sm;
+  }
+
+  button {
+    @apply cursor-pointer;
+  }
+
+  input,
+  textarea,
+  select {
+    @apply text-prose text-lightGrey;
+  }
+
+  /* The dashed card that holds a group of copy */
+  .text-container {
+    @apply h-auto flex flex-col gap-6 md:gap-8 backdrop-blur-sm bg-white/1 border border-dashed border-darkGrey rounded-media p-6 md:p-8 shadow-md transition duration-(--transition);
+  }
+}

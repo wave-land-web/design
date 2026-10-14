@@ -1,0 +1,10 @@
+/* The whole design system, in order. Import it right after Tailwind:
+   @import 'tailwindcss';
+   @import '@wave-land-web/design/styles/index.css'; */
+@import './tokens.css';
+@import './utilities.css';
+@import './motion.css';
+@import './base.css';
+
+/* Tailwind skips node_modules when it looks for class names, so point it at the components here */
+@source '../components';

@@ -1,0 +1,14 @@
+---
+import { Icon } from 'astro-icon/components'
+
+// The wordmark comes from this package's icons/ folder, so the app's astro-icon needs iconOptions from config.js
+export interface Props {
+  class?: string
+}
+
+const { class: className } = Astro.props
+---
+
+<a href="/" class:list={['block w-full py-6', className]} title="Wave Land" aria-label="Wave Land">
+  <Icon name="title" />
+</a>

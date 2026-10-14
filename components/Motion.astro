@@ -1,0 +1,53 @@
+---
+// The script behind styles/motion.css. Put it in the layout's <head>, so it runs before the page's first frame.
+---
+
+{/* Scroll animations only hide content once JavaScript is running (lsa-on).
+     Pages crossfade by view transition. Arriving that way, scroll reveals already on screen show at once, before the first
+     frame, so they don't fade in a second time after the crossfade (pagereveal, revealOnScreen).
+     Then each `lsa` element reveals once, as it scrolls into view: as soon as its top passes 90% of the viewport, however
+     tall it is. Without IntersectionObserver everything shows rather than staying hidden. */}
+<script is:inline>
+  document.documentElement.classList.add('lsa-on')
+
+  function revealOnScreen() {
+    document.querySelectorAll('.lsa').forEach((el) => {
+      if (el.getBoundingClientRect().top < innerHeight) el.classList.add('active')
+    })
+  }
+
+  window.addEventListener('pagereveal', (event) => {
+    if (!event.viewTransition) return
+    const root = document.documentElement
+    root.classList.add('vt-arrival')
+    revealOnScreen()
+    event.viewTransition.finished.finally(() => root.classList.remove('vt-arrival'))
+  })
+
+  function handleAnimations() {
+    const elements = document.querySelectorAll('.lsa')
+    if (elements.length === 0) return
+
+    if (document.documentElement.classList.contains('vt-arrival')) revealOnScreen()
+
+    if (!('IntersectionObserver' in window)) {
+      elements.forEach((el) => el.classList.add('active'))
+      return
+    }
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (!entry.isIntersecting) return
+          entry.target.classList.add('active')
+          observer.unobserve(entry.target)
+        })
+      },
+      { rootMargin: '0px 0px -10% 0px' },
+    )
+
+    elements.forEach((el) => observer.observe(el))
+  }
+
+  document.addEventListener('DOMContentLoaded', handleAnimations)
+</script>
