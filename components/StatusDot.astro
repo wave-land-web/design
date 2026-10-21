@@ -1,0 +1,42 @@
+---
+// A status as a dot, for rows and tight spots where a Pill would crowd. The label shows as a tooltip and is read out by
+// screen readers. Pass the color in class, like Pill (text-green on the site, tone-good in the Brain); off draws an empty
+// ring, for something that isn't on yet. The styles are scoped here instead of Tailwind utilities, so an app that only
+// uses the tokens (the Brain) gets them too.
+export interface Props {
+  label: string
+  off?: boolean
+  class?: string
+}
+
+const { label, off = false, class: className } = Astro.props
+---
+
+<span class:list={['status-dot', className, { off }]} title={label}>
+  <span class="status-dot-label">{label}</span>
+</span>
+
+<style>
+  .status-dot {
+    flex: none;
+    display: inline-block;
+    width: 0.5rem;
+    height: 0.5rem;
+    border: 1.5px solid currentColor;
+    border-radius: 50%;
+    background: currentColor;
+  }
+
+  .off {
+    background: none;
+  }
+
+  .status-dot-label {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip-path: inset(50%);
+    white-space: nowrap;
+  }
+</style>

@@ -1,6 +1,6 @@
 {
   "name": "@wave-land-web/design",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "Wave Land's design system: Tailwind 4 tokens and utilities, fonts, motion, and the shared Astro and React components",
   "private": true,
   "type": "module",
@@ -31,6 +31,11 @@
     "astro-icon": "^1.1.0",
     "react": "^19.0.0",
     "tailwindcss": "^4.0.0"
+  },
+  "peerDependenciesMeta": {
+    "astro-icon": {
+      "optional": true
+    }
   },
   "devDependencies": {
     "prettier": "^3.9.9",

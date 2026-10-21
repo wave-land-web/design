@@ -5,7 +5,7 @@ The design system behind [wavelandweb.com](https://wavelandweb.com), shared by e
 ## Install
 
 ```sh
-npm install github:wave-land-web/design#v1.0.0
+npm install github:wave-land-web/design#v1.1.0
 ```
 
 It needs Astro 7 with `@astrojs/react` and `astro-icon`, and Tailwind 4 through `@tailwindcss/vite`.
@@ -53,7 +53,7 @@ Import components by file, extension included: `@wave-land-web/design/components
 - `styles/motion.css`: page transitions, `hero-in` and `lsa`, and reduced motion.
 - `styles/base.css`: element defaults, typography, focus rings and the dashed `.text-container` card.
 - `styles/index.css`: all four in order, plus the `@source` that lets Tailwind find the classes in `components/`.
-- `components/`: `CTA`, `Link`, `ArrowIcon`, `Pill`, `TitleLogo`, `PageHeader`, `DateAndReadTime` and `Motion`.
+- `components/`: `CTA`, `Link`, `ArrowIcon`, `Pill`, `StatusDot`, `TitleLogo`, `PageHeader`, `DateAndReadTime` and `Motion`.
 - `fonts/`: Monaspace Argon and Poppins, under the SIL Open Font License (the `OFL-*.txt` files).
 - `icons/`: the wave logo and the wordmark, for astro-icon.
 - `config.js`: the font and astro-icon settings.
@@ -66,6 +66,7 @@ Use the tokens and utilities rather than raw values.
 - **Radius:** `rounded-media` for cards and frames, the `media` utility for images shown on their own (corners plus shadow; images are plain by default), `rounded-control` for buttons and pills, `rounded-field` for inputs.
 - **Spacing and widths:** `py-section`, `mb-header`, `pt-page-top`, `top-sticky`, `gap-split`, `stack`, `max-w-copy` and `max-w-narrow`.
 - **Buttons and links:** `btn`, `btn-primary`, `btn-secondary` and `btn-toggle`, plus the `CTA` and `Link` components. One primary button per screen. Standalone links carry an arrow (`ArrowIcon`, `link-arrow`) that nudges on hover: → for a page on the same site, ↗ for another site. Links inside copy are underlined; nav links just change color. Three links in a row go purple, orange and green, in that order.
+- **Status:** a `Pill` when there's room for the word, a `StatusDot` where it would crowd a row or a sidebar (the word becomes its tooltip). A filled dot is a state that's on; `off` draws an empty ring for something that isn't on yet.
 - **Hover and focus:** use `hocus:` (hover or keyboard focus), `hocus-within:` (or a focused child) and `group-hocus:` instead of pairing `hover:` with `focus-visible:` by hand.
 - **Motion:** `hero-in` for content above the fold and `lsa` for content that reveals on scroll. Stagger items with `style="--i: n"`, and reveal whole sections or cards, not single paragraphs. Timing uses `--transition`, `--duration-reveal`, `--duration-move`, `--ease-reveal` and `--stagger`.
 - **Page transitions:** pages crossfade (View Transitions API) and the nav stays still (`view-transition-name: site-nav`). Reduced motion turns off every animation.
