@@ -5,7 +5,7 @@ The design system behind [wavelandweb.com](https://wavelandweb.com), shared by e
 ## Install
 
 ```sh
-npm install github:wave-land-web/design#v1.1.0
+npm install github:wave-land-web/design#v1.2.0
 ```
 
 It needs Astro 7 with `@astrojs/react` and `astro-icon`, and Tailwind 4 through `@tailwindcss/vite`.
@@ -48,7 +48,7 @@ Import components by file, extension included: `@wave-land-web/design/components
 
 ## What's in it
 
-- `styles/tokens.css`: colors, fonts, the type scale, spacing, widths and motion timing (the `@theme` block).
+- `styles/tokens.css`: colors, surfaces and tints, fonts, the two type scales, spacing, widths, corners, shadows and motion timing (the `@theme` block). An app without Tailwind utilities can import just this file after `tailwindcss/theme.css` and use the tokens as CSS variables (the Brain does).
 - `styles/utilities.css`: `btn`, `link-arrow`, `label`, `media`, `stack`, `gap-split`, `section-split`, and the `hocus` variants.
 - `styles/motion.css`: page transitions, `hero-in` and `lsa`, and reduced motion.
 - `styles/base.css`: element defaults, typography, focus rings and the dashed `.text-container` card.
@@ -63,12 +63,13 @@ Import components by file, extension included: `@wave-land-web/design/components
 Use the tokens and utilities rather than raw values.
 
 - **Colors, fonts and type sizes:** Tailwind theme tokens (`text-purple`, `font-header`, `text-prose` and so on). No stray hex codes. The site is dark only, on `bg-darkBlue`.
-- **Radius:** `rounded-media` for cards and frames, the `media` utility for images shown on their own (corners plus shadow; images are plain by default), `rounded-control` for buttons and pills, `rounded-field` for inputs.
+- **Apps (the Brain):** panels sit on `sunken`, `surface` and `raised`, divided by `line`, `lineSoft` and `faint`. Status backgrounds are the brand tints (`greenTint`, `orangeTint`, `purpleTint`). Dense screens use the fixed app scale (`--text-ui-xs` to `--text-ui-stat`, body at `--text-ui`) instead of the fluid one, and `--shadow-raised` and `--shadow-overlay` for things floating over the page. The site uses none of these, so adding to them never changes it.
+- **Radius:** `rounded-media` for cards and frames, the `media` utility for images shown on their own (corners plus shadow; images are plain by default), `rounded-control` for buttons and pills, `rounded-field` for inputs, `rounded-small` for small app details like keys and chart bars.
 - **Spacing and widths:** `py-section`, `mb-header`, `pt-page-top`, `top-sticky`, `gap-split`, `stack`, `max-w-copy` and `max-w-narrow`.
 - **Buttons and links:** `btn`, `btn-primary`, `btn-secondary` and `btn-toggle`, plus the `CTA` and `Link` components. One primary button per screen. Standalone links carry an arrow (`ArrowIcon`, `link-arrow`) that nudges on hover: → for a page on the same site, ↗ for another site. Links inside copy are underlined; nav links just change color. Three links in a row go purple, orange and green, in that order.
 - **Status:** a `Pill` when there's room for the word, a `StatusDot` where it would crowd a row or a sidebar (the word becomes its tooltip). Use dots only where every row has one, so the colors read as a set; a one-off state like Failed keeps its Pill. A filled dot is a live state (active, in progress); `off` draws an empty ring for something that isn't on, whether it hasn't started yet (not connected) or is over (a past client).
 - **Hover and focus:** use `hocus:` (hover or keyboard focus), `hocus-within:` (or a focused child) and `group-hocus:` instead of pairing `hover:` with `focus-visible:` by hand.
-- **Motion:** `hero-in` for content above the fold and `lsa` for content that reveals on scroll. Stagger items with `style="--i: n"`, and reveal whole sections or cards, not single paragraphs. Timing uses `--transition`, `--duration-reveal`, `--duration-move`, `--ease-reveal` and `--stagger`.
+- **Motion:** `hero-in` for content above the fold and `lsa` for content that reveals on scroll. Stagger items with `style="--i: n"`, and reveal whole sections or cards, not single paragraphs. Timing uses `--transition`, `--duration-reveal`, `--duration-move`, `--duration-fast` (a menu or dialog appearing), `--ease-reveal` and `--stagger`.
 - **Page transitions:** pages crossfade (View Transitions API) and the nav stays still (`view-transition-name: site-nav`). Reduced motion turns off every animation.
 
 ## Changing it

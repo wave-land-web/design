@@ -4,6 +4,7 @@
   --radius-media: 1rem;
   --radius-control: 9999px;
   --radius-field: 0.5rem; /* form fields, code blocks, the skip link */
+  --radius-small: 0.375rem; /* app details: keys, chart bars, skeleton lines */
 
   --color-white: #fffafa;
   --color-black: var(--color-gray-950);
@@ -15,6 +16,26 @@
   --color-lightGrey: var(--color-gray-300);
   --color-grey: var(--color-gray-400);
   --color-darkGrey: var(--color-gray-700);
+
+  /* Surfaces, for apps (the Brain) that stack panels on darkBlue. Darkest to lightest: sunken for empty states and
+     wells, surface for cards (the site's dashed card is the same white wash over darkBlue), raised for hover and
+     anything lifted off a card. Lines divide them: line for edges, lineSoft inside a card, faint for a dashed outline. */
+  --color-sunken: color-mix(in oklab, var(--color-black) 55%, var(--color-darkBlue));
+  --color-surface: color-mix(in oklab, var(--color-white) 2%, var(--color-darkBlue));
+  --color-raised: var(--color-gray-800);
+  --color-line: color-mix(in oklab, var(--color-darkGrey) 65%, var(--color-darkBlue));
+  --color-lineSoft: color-mix(in oklab, var(--color-darkGrey) 40%, var(--color-darkBlue));
+  --color-faint: var(--color-gray-600);
+
+  /* Tints: a brand color washed into black, as the background behind a status (a green success banner, an orange
+     error, a purple highlight). Text on a tint stays white or the brand color itself. */
+  --color-greenTint: color-mix(in oklab, var(--color-green) 15%, var(--color-black));
+  --color-orangeTint: color-mix(in oklab, var(--color-orange) 15%, var(--color-black));
+  --color-purpleTint: color-mix(in oklab, var(--color-purple) 30%, var(--color-black));
+
+  /* Elevation: raised for things floating over the page (toasts, menus), overlay for a dialog over a dimmed page */
+  --shadow-raised: 0 12px 32px rgb(0 0 0 / 0.4);
+  --shadow-overlay: 0 24px 64px rgb(0 0 0 / 0.5);
 
   --font-header: var(--font-poppins);
   --font-body: var(--font-monaspace);
@@ -63,10 +84,23 @@
   --text-quote: 3.5rem; /* the decorative quote mark on testimonials */
   --text-quote--line-height: 1;
 
+  /* The app scale: fixed sizes for dense screens (the Brain), where the fluid scale above would be too big. ui is body
+     text; xs and sm for meta lines, labels and axes; md for card titles; lg for inputs (16px, so phones don't zoom);
+     title, display and stat for a drawer's title and big numbers. */
+  --text-ui-xs: 0.75rem; /* 12px */
+  --text-ui-sm: 0.8125rem; /* 13px */
+  --text-ui: 0.875rem; /* 14px */
+  --text-ui-md: 0.9375rem; /* 15px */
+  --text-ui-lg: 1rem; /* 16px */
+  --text-ui-title: 1.375rem; /* 22px */
+  --text-ui-display: 1.75rem; /* 28px */
+  --text-ui-stat: 2.25rem; /* 36px */
+
   /* Motion: --transition for hovers and small state changes, --duration-reveal for entrances (hero-in, lsa) */
   --transition: 200ms;
   --duration-reveal: 700ms;
   --ease-reveal: cubic-bezier(0, 0, 0.2, 1); /* ease-out: fast start, gentle landing */
   --stagger: 100ms; /* between items revealed together; set --i: 1, 2, 3 on each */
   --duration-move: 350ms; /* things moving to a new place on screen (view transitions) */
+  --duration-fast: 150ms; /* small things appearing: a menu, a dialog */
 }
