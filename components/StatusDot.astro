@@ -1,8 +1,8 @@
 ---
 // A status as a dot, for rows and tight spots where a Pill would crowd. The label shows as a tooltip and is read out by
 // screen readers. Pass the color in class, like Pill (text-green on the site, tone-good in the Brain); off draws an empty
-// ring, for something that isn't on yet. The styles are scoped here instead of Tailwind utilities, so an app that only
-// uses the tokens (the Brain) gets them too.
+// ring, for something that isn't on: not started yet, or over. The styles are scoped here instead of Tailwind utilities,
+// so an app that only uses the tokens (the Brain) gets them too.
 export interface Props {
   label: string
   off?: boolean
